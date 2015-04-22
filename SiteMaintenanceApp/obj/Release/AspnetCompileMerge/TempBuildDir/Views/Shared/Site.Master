@@ -1,0 +1,154 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link href="<%: Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../../Content/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="../../Content/bootstrap-responsive.min.css">
+    <script src="../../Scripts/jquery-1.9.1.min.js"></script>
+    <script src="../../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/bootstrap-datepicker.min.js"></script>
+
+    <%: Styles.Render("~/Content/css") %><script src="../../Scripts/moment-with-locales.js"></script>
+    <%: Scripts.Render("~/bundles/modernizr") %>
+
+    <style type="text/css">
+
+        .ui-helper-hidden-accessible {
+            position: absolute !important;
+            clip: rect(1px 1px 1px 1px);
+            clip: rect(1px,1px,1px,1px);
+        }
+
+        ul
+        {
+            padding: 0;
+            list-style: none;
+            z-index: 1;
+            position: relative;
+        }
+
+            ul li
+            {
+                float: left;
+                width: 100px;
+                text-align: center;
+                border-left: 1px solid white;
+            }
+
+                ul li a
+                {
+                    visibility: visible;
+                    display: block;
+                    padding: 5px 10px;
+                    background-color: #d3dce0;
+                    background: beige;
+                    text-decoration: none;
+                }
+
+                    ul li a:hover
+                    {
+                        background-color: #d3dce0;
+                    }
+
+                ul li ul
+                {
+                    visibility: hidden;
+                    display: none;
+                }
+
+                ul li:hover ul
+                {
+                    visibility: visible;
+                    display: block;
+                    position: absolute;
+                }
+
+                    ul li:hover ul li
+                    {
+                        float: none;
+                    }
+
+        .space-above
+        {
+            padding-top: 25px;
+        }
+
+        .centerText
+        {
+            text-align: center;
+        }
+
+        .centerTable
+        {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .largeFont
+        {
+            font-size: large;
+        }
+
+        .mediumFont
+        {
+            font-size: medium;
+        }
+
+        .tab
+        {
+            margin-left: 5em;
+        }
+    </style>
+</head>
+<body class="mediumFont">
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title"><%: Html.ActionLink("Site Maintenance", "Index", "Home") %></p>
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    <%: Html.Partial("_LoginPartial") %>
+                </section>
+                <nav class="space-above">
+                    <ul>
+                        <li>
+                            <%: Html.ActionLink("Tables", "Index", "Tables") %>
+                            <ul>
+                                <li class="centerText"><%: Html.ActionLink("Services", "Services", "Tables") %></li>
+                                <li class="centerText"><%: Html.ActionLink("Maintenance Times", "MaintenanceTimes", "Tables")%></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <%: Html.ActionLink("Map", "Index", "Map") %>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        <asp:ContentPlaceHolder ID="FeaturedContent" runat="server" />
+        <section class="content-wrapper main-content clear-fix">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; <%: DateTime.Now.Year %> - Site Maintenance</p>
+            </div>
+        </div>
+    </footer>
+
+    <asp:ContentPlaceHolder ID="ScriptsSection" runat="server" />
+</body>
+</html>
