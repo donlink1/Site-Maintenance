@@ -1,6 +1,6 @@
 # Site-Maintenance
 
-# author:  Lloyd Moore
+# Author:  Lloyd Moore
 
 # Todo: 
 	- Map pages
