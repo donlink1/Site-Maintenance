@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SiteMantenanceModelStoreContainer" CdmEntityContainer="SiteMantenanceEntities">
+    <EntitySetMapping Name="CallLogs">
+      <EntityTypeMapping TypeName="SiteMantenanceModel.CallLog">
+        <MappingFragment StoreEntitySet="CallLog">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="lastServiceCall" ColumnName="lastServiceCall" />
+          <ScalarProperty Name="lastMaintenanceCall" ColumnName="lastMaintenanceCall" />
+          <ScalarProperty Name="siteCode" ColumnName="siteCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Levels">
+      <EntityTypeMapping TypeName="SiteMantenanceModel.Level">
+        <MappingFragment StoreEntitySet="Level">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="level1" ColumnName="level" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sites">
+      <EntityTypeMapping TypeName="SiteMantenanceModel.Site">
+        <MappingFragment StoreEntitySet="Site">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="siteCode" ColumnName="siteCode" />
+          <ScalarProperty Name="siteName" ColumnName="siteName" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="city" ColumnName="city" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SiteAccountManagers">
+      <EntityTypeMapping TypeName="SiteMantenanceModel.SiteAccountManager">
+        <MappingFragment StoreEntitySet="SiteAccountManager">
+          <ScalarProperty Name="accountManager" ColumnName="accountManager" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SiteCodeNumbers">
+      <EntityTypeMapping TypeName="SiteMantenanceModel.SiteCodeNumber">
+        <MappingFragment StoreEntitySet="SiteCodeNumber">
+          <ScalarProperty Name="siteCode" ColumnName="siteCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SiteStates">
+      <EntityTypeMapping TypeName="SiteMantenanceModel.SiteState">
+        <MappingFragment StoreEntitySet="SiteState">
+          <ScalarProperty Name="state" ColumnName="state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staffs">
+      <EntityTypeMapping TypeName="SiteMantenanceModel.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="siteCode" ColumnName="siteCode" />
+          <ScalarProperty Name="accountManager" ColumnName="accountManager" />
+          <ScalarProperty Name="supportRep" ColumnName="supportRep" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Territories">
+      <EntityTypeMapping TypeName="SiteMantenanceModel.Territory">
+        <MappingFragment StoreEntitySet="Territory">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="accountManager" ColumnName="accountManager" />
+          <ScalarProperty Name="territory1" ColumnName="territory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceTiers">
+      <EntityTypeMapping TypeName="SiteMantenanceModel.ServiceTier">
+        <MappingFragment StoreEntitySet="ServiceTier">
+          <ScalarProperty Name="siteCode" ColumnName="siteCode" />
+          <ScalarProperty Name="serviceTierType" ColumnName="serviceTierType" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

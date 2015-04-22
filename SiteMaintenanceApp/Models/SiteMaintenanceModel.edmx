@@ -1,0 +1,553 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SiteMantenanceModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SiteMantenanceModelStoreContainer">
+          <EntitySet Name="CallLog" EntityType="SiteMantenanceModel.Store.CallLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Level" EntityType="SiteMantenanceModel.Store.Level" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ServiceTier" EntityType="SiteMantenanceModel.Store.ServiceTier" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Site" EntityType="SiteMantenanceModel.Store.Site" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SiteAccountManager" EntityType="SiteMantenanceModel.Store.SiteAccountManager" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SiteCodeNumber" EntityType="SiteMantenanceModel.Store.SiteCodeNumber" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SiteState" EntityType="SiteMantenanceModel.Store.SiteState" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Staff" EntityType="SiteMantenanceModel.Store.Staff" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Territory" EntityType="SiteMantenanceModel.Store.Territory" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CallLog_SiteCodeNumber" Association="SiteMantenanceModel.Store.FK_CallLog_SiteCodeNumber">
+            <End Role="SiteCodeNumber" EntitySet="SiteCodeNumber" />
+            <End Role="CallLog" EntitySet="CallLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Level_SiteState" Association="SiteMantenanceModel.Store.FK_Level_SiteState">
+            <End Role="SiteState" EntitySet="SiteState" />
+            <End Role="Level" EntitySet="Level" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceTier_SiteCodeNumber" Association="SiteMantenanceModel.Store.FK_ServiceTier_SiteCodeNumber">
+            <End Role="SiteCodeNumber" EntitySet="SiteCodeNumber" />
+            <End Role="ServiceTier" EntitySet="ServiceTier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Site_SiteCodeNumber" Association="SiteMantenanceModel.Store.FK_Site_SiteCodeNumber">
+            <End Role="SiteCodeNumber" EntitySet="SiteCodeNumber" />
+            <End Role="Site" EntitySet="Site" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Site_SiteState" Association="SiteMantenanceModel.Store.FK_Site_SiteState">
+            <End Role="SiteState" EntitySet="SiteState" />
+            <End Role="Site" EntitySet="Site" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_SiteAccountManager" Association="SiteMantenanceModel.Store.FK_Staff_SiteAccountManager">
+            <End Role="SiteAccountManager" EntitySet="SiteAccountManager" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_SiteCodeNumber" Association="SiteMantenanceModel.Store.FK_Staff_SiteCodeNumber">
+            <End Role="SiteCodeNumber" EntitySet="SiteCodeNumber" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Territory_SiteAccountManager" Association="SiteMantenanceModel.Store.FK_Territory_SiteAccountManager">
+            <End Role="SiteAccountManager" EntitySet="SiteAccountManager" />
+            <End Role="Territory" EntitySet="Territory" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CallLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="lastServiceCall" Type="datetime" />
+          <Property Name="lastMaintenanceCall" Type="datetime" />
+          <Property Name="siteCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Level">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="state" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="level" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ServiceTier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="serviceTierType" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="siteCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="siteCode" Type="int" Nullable="false" />
+          <Property Name="siteName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="state" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="city" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SiteAccountManager">
+          <Key>
+            <PropertyRef Name="accountManager" />
+          </Key>
+          <Property Name="accountManager" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SiteCodeNumber">
+          <Key>
+            <PropertyRef Name="siteCode" />
+          </Key>
+          <Property Name="siteCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SiteState">
+          <Key>
+            <PropertyRef Name="state" />
+          </Key>
+          <Property Name="state" Type="char" Nullable="false" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="siteCode" Type="int" Nullable="false" />
+          <Property Name="accountManager" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="supportRep" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Territory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="accountManager" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="territory" Type="varchar" Nullable="false" MaxLength="3" />
+        </EntityType>
+        <Association Name="FK_CallLog_SiteCodeNumber">
+          <End Role="SiteCodeNumber" Type="SiteMantenanceModel.Store.SiteCodeNumber" Multiplicity="1" />
+          <End Role="CallLog" Type="SiteMantenanceModel.Store.CallLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteCodeNumber">
+              <PropertyRef Name="siteCode" />
+            </Principal>
+            <Dependent Role="CallLog">
+              <PropertyRef Name="siteCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Level_SiteState">
+          <End Role="SiteState" Type="SiteMantenanceModel.Store.SiteState" Multiplicity="1" />
+          <End Role="Level" Type="SiteMantenanceModel.Store.Level" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteState">
+              <PropertyRef Name="state" />
+            </Principal>
+            <Dependent Role="Level">
+              <PropertyRef Name="state" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceTier_SiteCodeNumber">
+          <End Role="SiteCodeNumber" Type="SiteMantenanceModel.Store.SiteCodeNumber" Multiplicity="1" />
+          <End Role="ServiceTier" Type="SiteMantenanceModel.Store.ServiceTier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteCodeNumber">
+              <PropertyRef Name="siteCode" />
+            </Principal>
+            <Dependent Role="ServiceTier">
+              <PropertyRef Name="siteCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Site_SiteCodeNumber">
+          <End Role="SiteCodeNumber" Type="SiteMantenanceModel.Store.SiteCodeNumber" Multiplicity="1" />
+          <End Role="Site" Type="SiteMantenanceModel.Store.Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteCodeNumber">
+              <PropertyRef Name="siteCode" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="siteCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Site_SiteState">
+          <End Role="SiteState" Type="SiteMantenanceModel.Store.SiteState" Multiplicity="1" />
+          <End Role="Site" Type="SiteMantenanceModel.Store.Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteState">
+              <PropertyRef Name="state" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="state" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_SiteAccountManager">
+          <End Role="SiteAccountManager" Type="SiteMantenanceModel.Store.SiteAccountManager" Multiplicity="1" />
+          <End Role="Staff" Type="SiteMantenanceModel.Store.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteAccountManager">
+              <PropertyRef Name="accountManager" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="accountManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_SiteCodeNumber">
+          <End Role="SiteCodeNumber" Type="SiteMantenanceModel.Store.SiteCodeNumber" Multiplicity="1" />
+          <End Role="Staff" Type="SiteMantenanceModel.Store.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteCodeNumber">
+              <PropertyRef Name="siteCode" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="siteCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Territory_SiteAccountManager">
+          <End Role="SiteAccountManager" Type="SiteMantenanceModel.Store.SiteAccountManager" Multiplicity="1" />
+          <End Role="Territory" Type="SiteMantenanceModel.Store.Territory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteAccountManager">
+              <PropertyRef Name="accountManager" />
+            </Principal>
+            <Dependent Role="Territory">
+              <PropertyRef Name="accountManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SiteMantenanceModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SiteMantenanceEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="CallLogs" EntityType="SiteMantenanceModel.CallLog" />
+          <EntitySet Name="Levels" EntityType="SiteMantenanceModel.Level" />
+          <EntitySet Name="Sites" EntityType="SiteMantenanceModel.Site" />
+          <EntitySet Name="SiteAccountManagers" EntityType="SiteMantenanceModel.SiteAccountManager" />
+          <EntitySet Name="SiteCodeNumbers" EntityType="SiteMantenanceModel.SiteCodeNumber" />
+          <EntitySet Name="SiteStates" EntityType="SiteMantenanceModel.SiteState" />
+          <EntitySet Name="Staffs" EntityType="SiteMantenanceModel.Staff" />
+          <EntitySet Name="Territories" EntityType="SiteMantenanceModel.Territory" />
+          <AssociationSet Name="FK_CallLog_SiteCodeNumber" Association="SiteMantenanceModel.FK_CallLog_SiteCodeNumber">
+            <End Role="SiteCodeNumber" EntitySet="SiteCodeNumbers" />
+            <End Role="CallLog" EntitySet="CallLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Level_SiteState" Association="SiteMantenanceModel.FK_Level_SiteState">
+            <End Role="SiteState" EntitySet="SiteStates" />
+            <End Role="Level" EntitySet="Levels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Site_SiteCodeNumber" Association="SiteMantenanceModel.FK_Site_SiteCodeNumber">
+            <End Role="SiteCodeNumber" EntitySet="SiteCodeNumbers" />
+            <End Role="Site" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Site_SiteState" Association="SiteMantenanceModel.FK_Site_SiteState">
+            <End Role="SiteState" EntitySet="SiteStates" />
+            <End Role="Site" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_SiteAccountManager" Association="SiteMantenanceModel.FK_Staff_SiteAccountManager">
+            <End Role="SiteAccountManager" EntitySet="SiteAccountManagers" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Territory_SiteAccountManager" Association="SiteMantenanceModel.FK_Territory_SiteAccountManager">
+            <End Role="SiteAccountManager" EntitySet="SiteAccountManagers" />
+            <End Role="Territory" EntitySet="Territories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_SiteCodeNumber" Association="SiteMantenanceModel.FK_Staff_SiteCodeNumber">
+            <End Role="SiteCodeNumber" EntitySet="SiteCodeNumbers" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <EntitySet Name="ServiceTiers" EntityType="SiteMantenanceModel.ServiceTier" />
+          <AssociationSet Name="FK_ServiceTier_SiteCodeNumber" Association="SiteMantenanceModel.FK_ServiceTier_SiteCodeNumber">
+            <End Role="SiteCodeNumber" EntitySet="SiteCodeNumbers" />
+            <End Role="ServiceTier" EntitySet="ServiceTiers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CallLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="lastServiceCall" Type="DateTime" Precision="3" />
+          <Property Name="lastMaintenanceCall" Type="DateTime" Precision="3" />
+          <Property Name="siteCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SiteCodeNumber" Relationship="SiteMantenanceModel.FK_CallLog_SiteCodeNumber" FromRole="CallLog" ToRole="SiteCodeNumber" />
+        </EntityType>
+        <EntityType Name="Level">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="state" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
+          <Property Name="level1" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="SiteState" Relationship="SiteMantenanceModel.FK_Level_SiteState" FromRole="Level" ToRole="SiteState" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="siteCode" Type="Int32" Nullable="false" />
+          <Property Name="siteName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="state" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="SiteCodeNumber" Relationship="SiteMantenanceModel.FK_Site_SiteCodeNumber" FromRole="Site" ToRole="SiteCodeNumber" />
+          <NavigationProperty Name="SiteState" Relationship="SiteMantenanceModel.FK_Site_SiteState" FromRole="Site" ToRole="SiteState" />
+        </EntityType>
+        <EntityType Name="SiteAccountManager">
+          <Key>
+            <PropertyRef Name="accountManager" />
+          </Key>
+          <Property Name="accountManager" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Staffs" Relationship="SiteMantenanceModel.FK_Staff_SiteAccountManager" FromRole="SiteAccountManager" ToRole="Staff" />
+          <NavigationProperty Name="Territories" Relationship="SiteMantenanceModel.FK_Territory_SiteAccountManager" FromRole="SiteAccountManager" ToRole="Territory" />
+        </EntityType>
+        <EntityType Name="SiteCodeNumber">
+          <Key>
+            <PropertyRef Name="siteCode" />
+          </Key>
+          <Property Name="siteCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CallLogs" Relationship="SiteMantenanceModel.FK_CallLog_SiteCodeNumber" FromRole="SiteCodeNumber" ToRole="CallLog" />
+          <NavigationProperty Name="Sites" Relationship="SiteMantenanceModel.FK_Site_SiteCodeNumber" FromRole="SiteCodeNumber" ToRole="Site" />
+          <NavigationProperty Name="Staffs" Relationship="SiteMantenanceModel.FK_Staff_SiteCodeNumber" FromRole="SiteCodeNumber" ToRole="Staff" />
+          <NavigationProperty Name="ServiceTiers" Relationship="SiteMantenanceModel.FK_ServiceTier_SiteCodeNumber" FromRole="SiteCodeNumber" ToRole="ServiceTier" />
+        </EntityType>
+        <EntityType Name="SiteState">
+          <Key>
+            <PropertyRef Name="state" />
+          </Key>
+          <Property Name="state" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="Levels" Relationship="SiteMantenanceModel.FK_Level_SiteState" FromRole="SiteState" ToRole="Level" />
+          <NavigationProperty Name="Sites" Relationship="SiteMantenanceModel.FK_Site_SiteState" FromRole="SiteState" ToRole="Site" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="siteCode" Type="Int32" Nullable="false" />
+          <Property Name="accountManager" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="supportRep" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="SiteAccountManager" Relationship="SiteMantenanceModel.FK_Staff_SiteAccountManager" FromRole="Staff" ToRole="SiteAccountManager" />
+          <NavigationProperty Name="SiteCodeNumber" Relationship="SiteMantenanceModel.FK_Staff_SiteCodeNumber" FromRole="Staff" ToRole="SiteCodeNumber" />
+        </EntityType>
+        <EntityType Name="Territory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="accountManager" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="territory1" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="SiteAccountManager" Relationship="SiteMantenanceModel.FK_Territory_SiteAccountManager" FromRole="Territory" ToRole="SiteAccountManager" />
+        </EntityType>
+        <Association Name="FK_CallLog_SiteCodeNumber">
+          <End Role="SiteCodeNumber" Type="SiteMantenanceModel.SiteCodeNumber" Multiplicity="1" />
+          <End Role="CallLog" Type="SiteMantenanceModel.CallLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteCodeNumber">
+              <PropertyRef Name="siteCode" />
+            </Principal>
+            <Dependent Role="CallLog">
+              <PropertyRef Name="siteCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Level_SiteState">
+          <End Role="SiteState" Type="SiteMantenanceModel.SiteState" Multiplicity="1" />
+          <End Role="Level" Type="SiteMantenanceModel.Level" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteState">
+              <PropertyRef Name="state" />
+            </Principal>
+            <Dependent Role="Level">
+              <PropertyRef Name="state" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Site_SiteCodeNumber">
+          <End Role="SiteCodeNumber" Type="SiteMantenanceModel.SiteCodeNumber" Multiplicity="1" />
+          <End Role="Site" Type="SiteMantenanceModel.Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteCodeNumber">
+              <PropertyRef Name="siteCode" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="siteCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Site_SiteState">
+          <End Role="SiteState" Type="SiteMantenanceModel.SiteState" Multiplicity="1" />
+          <End Role="Site" Type="SiteMantenanceModel.Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteState">
+              <PropertyRef Name="state" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="state" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_SiteAccountManager">
+          <End Role="SiteAccountManager" Type="SiteMantenanceModel.SiteAccountManager" Multiplicity="1" />
+          <End Role="Staff" Type="SiteMantenanceModel.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteAccountManager">
+              <PropertyRef Name="accountManager" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="accountManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Territory_SiteAccountManager">
+          <End Role="SiteAccountManager" Type="SiteMantenanceModel.SiteAccountManager" Multiplicity="1" />
+          <End Role="Territory" Type="SiteMantenanceModel.Territory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteAccountManager">
+              <PropertyRef Name="accountManager" />
+            </Principal>
+            <Dependent Role="Territory">
+              <PropertyRef Name="accountManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_SiteCodeNumber">
+          <End Role="SiteCodeNumber" Type="SiteMantenanceModel.SiteCodeNumber" Multiplicity="1" />
+          <End Role="Staff" Type="SiteMantenanceModel.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteCodeNumber">
+              <PropertyRef Name="siteCode" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="siteCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ServiceTier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="serviceTierType" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="siteCode" Nullable="false" />
+          <NavigationProperty Name="SiteCodeNumber" Relationship="SiteMantenanceModel.FK_ServiceTier_SiteCodeNumber" FromRole="ServiceTier" ToRole="SiteCodeNumber" />
+        </EntityType>
+        <Association Name="FK_ServiceTier_SiteCodeNumber">
+          <End Type="SiteMantenanceModel.SiteCodeNumber" Role="SiteCodeNumber" Multiplicity="1" />
+          <End Type="SiteMantenanceModel.ServiceTier" Role="ServiceTier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiteCodeNumber">
+              <PropertyRef Name="siteCode" />
+            </Principal>
+            <Dependent Role="ServiceTier">
+              <PropertyRef Name="siteCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SiteMantenanceModelStoreContainer" CdmEntityContainer="SiteMantenanceEntities">
+          <EntitySetMapping Name="CallLogs">
+            <EntityTypeMapping TypeName="SiteMantenanceModel.CallLog">
+              <MappingFragment StoreEntitySet="CallLog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="lastServiceCall" ColumnName="lastServiceCall" />
+                <ScalarProperty Name="lastMaintenanceCall" ColumnName="lastMaintenanceCall" />
+                <ScalarProperty Name="siteCode" ColumnName="siteCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Levels">
+            <EntityTypeMapping TypeName="SiteMantenanceModel.Level">
+              <MappingFragment StoreEntitySet="Level">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="level1" ColumnName="level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="SiteMantenanceModel.Site">
+              <MappingFragment StoreEntitySet="Site">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="siteCode" ColumnName="siteCode" />
+                <ScalarProperty Name="siteName" ColumnName="siteName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="city" ColumnName="city" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiteAccountManagers">
+            <EntityTypeMapping TypeName="SiteMantenanceModel.SiteAccountManager">
+              <MappingFragment StoreEntitySet="SiteAccountManager">
+                <ScalarProperty Name="accountManager" ColumnName="accountManager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiteCodeNumbers">
+            <EntityTypeMapping TypeName="SiteMantenanceModel.SiteCodeNumber">
+              <MappingFragment StoreEntitySet="SiteCodeNumber">
+                <ScalarProperty Name="siteCode" ColumnName="siteCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiteStates">
+            <EntityTypeMapping TypeName="SiteMantenanceModel.SiteState">
+              <MappingFragment StoreEntitySet="SiteState">
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="SiteMantenanceModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="siteCode" ColumnName="siteCode" />
+                <ScalarProperty Name="accountManager" ColumnName="accountManager" />
+                <ScalarProperty Name="supportRep" ColumnName="supportRep" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Territories">
+            <EntityTypeMapping TypeName="SiteMantenanceModel.Territory">
+              <MappingFragment StoreEntitySet="Territory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="accountManager" ColumnName="accountManager" />
+                <ScalarProperty Name="territory1" ColumnName="territory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceTiers">
+            <EntityTypeMapping TypeName="SiteMantenanceModel.ServiceTier">
+              <MappingFragment StoreEntitySet="ServiceTier">
+                <ScalarProperty Name="siteCode" ColumnName="siteCode" />
+                <ScalarProperty Name="serviceTierType" ColumnName="serviceTierType" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
