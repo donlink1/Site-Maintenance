@@ -77,3 +77,4 @@ C:\Users\Owner\Documents\Visual Studio 2012\Projects\SiteMaintenanceApp\SiteMain
 C:\Users\Owner\Documents\Visual Studio 2012\Projects\SiteMaintenanceApp\SiteMaintenanceApp\obj\Release\SiteMaintenanceApp.csprojResolveAssemblyReference.cache
 C:\Users\Owner\Documents\Visual Studio 2012\Projects\SiteMaintenanceApp\SiteMaintenanceApp\obj\Release\SiteMaintenanceApp.dll
 C:\Users\Owner\Documents\Visual Studio 2012\Projects\SiteMaintenanceApp\SiteMaintenanceApp\obj\Release\SiteMaintenanceApp.pdb
+C:\Users\Owner\Documents\Visual Studio 2012\Projects\SiteMaintenanceApp\SiteMaintenanceApp\bin\SiteMaintenanceApp.dll.config
